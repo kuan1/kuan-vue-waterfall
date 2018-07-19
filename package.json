@@ -1,6 +1,6 @@
 {
   "name": "kuan-vue-waterfall",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue瀑布流插件",
   "main": "index",
   "scripts": {
