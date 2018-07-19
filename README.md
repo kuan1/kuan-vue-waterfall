@@ -2,6 +2,15 @@
 >  不需要设置内容高度，间隙默认0
 >  自动监听数据变化，自适应视口宽度
 
+## 安装
+```
+yarn add kuan-vue-waterfall
+```
+【or】
+```
+npm install kuan-vue-waterfall
+```
+
 ![image](http://pic.luzhongkuan.cn/1531993468976.jpg)
 
 ## 全局注册
