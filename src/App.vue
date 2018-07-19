@@ -1,7 +1,7 @@
 <template>
   <div>
     <water-fall :data="data" gap="20px" width="200px">
-      <water-fall-item v-for="(item, index) in data" :key="App" :order="App">
+      <water-fall-item v-for="(item, index) in data" :key="index" :order="index">
         <div class="item">
           <img :src="item"/>
         </div>

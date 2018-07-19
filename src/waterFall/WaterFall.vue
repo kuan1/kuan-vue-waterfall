@@ -65,7 +65,6 @@
           // 获取最小高度对应组下标
           const minHeight = Math.min(...hMap)
           const minIndex = hMap.findIndex((item) => item === minHeight)
-          console.log(minIndex)
 
           // 设置最外层容器高度
           this.height = Math.max(...hMap)
@@ -76,7 +75,6 @@
           hMap[minIndex] += h
           $el.style.left = `${this.itemWidth * minIndex}px`
           $el.style.top = `${minHeight}px`
-          console.log(hMap)
         }
       },
       async initWaterFall() {

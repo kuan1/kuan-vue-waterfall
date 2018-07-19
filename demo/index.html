@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>kuan-vue-waterfall demo</title>
+
+  <style>
+    .item {
+      padding: 8px;
+      background: #1da57a;
+    }
+
+    .add-btn {
+      font-size: 30px;
+      display: block;
+      padding: 20px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div>
+    <water-fall :data="data" gap="20px" width="200px">
+      <water-fall-item v-for="(item, index) in data" :key="index" :order="index">
+        <div class="item">
+          <img :src="item"/>
+        </div>
+      </water-fall-item>
+    </water-fall>
+
+    <button class="add-btn" @click="copyData">复制数据</button>
+  </div>
+</div>
+
+<script src="./vue.min.js"></script>
+<script src="../dist/kuan-vue-waterfall.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        data: [
+          '../src/images/1.jpg',
+          '../src/images/2.jpg',
+          '../src/images/3.jpg',
+          '../src/images/4.png',
+          '../src/images/1.jpg',
+          '../src/images/2.jpg',
+          '../src/images/3.jpg',
+          '../src/images/4.png'
+        ]
+      }
+    },
+    methods: {
+      copyData() {
+        this.data = [...this.data, ...this.data]
+      }
+    },
+    components: {
+      WaterFall: waterfall.WaterFall,
+      WaterFallItem: waterfall.WaterFallItem
+    }
+  })
+</script>
+</body>
+</html>

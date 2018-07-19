@@ -1,19 +1,16 @@
-const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
 const base = require('./webpack.base.conf')
 const merge = require('webpack-merge')
 
-
 const config = merge(base, {
   context: path.resolve(__dirname, '../'),
-  entry: './src/waterFall',
+  entry: './src/waterFall/lib-entry.js',
   output: {
-    filename: 'kuan-vue-waterfall.min.js'
+    filename: 'kuan-vue-waterfall.min.js',
+    library: 'waterfall',
+    libraryTarget: 'umd'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
     // ,
     // new webpack.DefinePlugin({
     //   'process.env': {
@@ -22,14 +19,5 @@ const config = merge(base, {
     // })
   ]
 })
-
-config.plugins = (config.plugins || []).concat([
-
-  new CopyWebpackPlugin([
-    { from: './src/waterfall.vue' },
-    { from: './src/waterfall-slot.vue' }
-  ]),
-
-])
 
 module.exports = config

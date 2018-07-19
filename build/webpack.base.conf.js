@@ -1,9 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
@@ -57,27 +54,6 @@ module.exports = {
     hints: isDev ? false : 'warning',
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: resolve('static'),
-        to: 'static',
-        ignore: ['.*'],
-      },
-    ]),
-    new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      inject: true,
-      favicon: resolve('static/favicon.ico'),
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        minifyJS: true,
-        minifyCSS: true,
-      },
-      chunksSortMode: 'dependency',
-    }),
     // make sure to include the plugin!
     new VueLoaderPlugin()
   ],
