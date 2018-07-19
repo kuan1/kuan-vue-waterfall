@@ -1,25 +1,3 @@
-# kuan-vue-waterfall （vue瀑布插件）
->  不需要设置内容高度，间隙默认0
->  自动监听数据变化，自适应视口宽度
-
-![image](http://pic.luzhongkuan.cn/1531993468976.jpg)
-
-## 全局注册
-```
- import waterFall from './waterFall'
- Vue.use(waterFall) 全局注册
-```
-
-## 参数
-##### `water-fall`属性
-- data： 自动监听数据更新布局
-- grap： 间隙
-- width： 单列的宽度（包括间隙）// 10px,10rem
-##### `water-fall-item`属性
-- order: 排序顺序
-
-## 使用demo
-```
 <template>
   <div>
     <water-fall :data="data" gap="20px" width="200px">
@@ -82,5 +60,3 @@
     margin: 20px auto;
   }
 </style>
-
-```
