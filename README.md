@@ -1,4 +1,6 @@
 # kuan-vue-waterfall （vue瀑布插件）
+
+### [https://kuan1.github.io/kuan-vue-waterfall/demo](https://kuan1.github.io/kuan-vue-waterfall/demo)
 >  不需要设置内容高度，间隙默认0
 >  自动监听数据变化，自适应视口宽度
 
@@ -93,3 +95,4 @@ npm install kuan-vue-waterfall
 </style>
 
 ```
+f
