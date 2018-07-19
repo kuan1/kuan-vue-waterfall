@@ -8,6 +8,12 @@ const install = (Vue) => {
 
 export {
   WaterFall,
+  WaterFallItem
+}
+
+export default {
+  WaterFall,
   WaterFallItem,
   install
 }
+
