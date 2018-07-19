@@ -6,6 +6,7 @@ const config = merge(base, {
   context: path.resolve(__dirname, '../'),
   entry: './src/waterFall/lib-entry.js',
   output: {
+    path: path.resolve(__dirname, '../', 'lib'),
     filename: 'kuan-vue-waterfall.min.js',
     library: 'waterfall',
     libraryTarget: 'umd'
