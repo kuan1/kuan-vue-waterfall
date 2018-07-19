@@ -6,7 +6,7 @@ const install = (Vue) => {
   Vue.component('water-fall-item', WaterFallItem)
 }
 
-export default {
+export {
   WaterFall,
   WaterFallItem,
   install

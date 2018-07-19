@@ -13,8 +13,7 @@
 </template>
 
 <script>
-  import waterFall from './waterFall'
-  const {WaterFall, WaterFallItem} = waterFall
+  import {WaterFall, WaterFallItem} from './waterFall'
 
   export default {
     data() {

@@ -4,7 +4,7 @@ const merge = require('webpack-merge')
 
 const config = merge(base, {
   context: path.resolve(__dirname, '../'),
-  entry: './src/waterFall/lib-entry.js',
+  entry: './src/waterFall',
   output: {
     path: path.resolve(__dirname, '../', 'lib'),
     filename: 'kuan-vue-waterfall.min.js',
