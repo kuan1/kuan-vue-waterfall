@@ -13,7 +13,7 @@ yarn add kuan-vue-waterfall
 npm install kuan-vue-waterfall
 ```
 
-![image](http://pic.luzhongkuan.cn/1532051693115.png)
+![image](http://pic.luzhongkuan.cn/1532051693115.png?a=1)
 
 ## 全局注册
 ```
