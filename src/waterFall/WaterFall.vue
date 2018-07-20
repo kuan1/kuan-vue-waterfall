@@ -13,7 +13,7 @@
     props: {
       width: {
         type: String, // '0', '10px', '10rem'
-        default: 0
+        default: '300px'
       },
       gap: {
         type: String, // '0', '10px', '10rem'
@@ -66,15 +66,14 @@
           const minHeight = Math.min(...hMap)
           const minIndex = hMap.findIndex((item) => item === minHeight)
 
-          // 设置最外层容器高度
-          this.height = Math.max(...hMap)
-
           // 设置item位置
           const {$el} = this.$children[i]
-          const h = $el.clientHeight
-          hMap[minIndex] += h
+          hMap[minIndex] += $el.clientHeight
           $el.style.left = `${this.itemWidth * minIndex}px`
           $el.style.top = `${minHeight}px`
+
+          // 设置最外层容器高度
+          this.height = Math.max(...hMap)
         }
       },
       async initWaterFall() {
@@ -134,9 +133,9 @@
 </script>
 
 <style>
-  .water-fall-container {
-    background: #f5f5f5;
-  }
+  /*.water-fall-container {*/
+    /*background: #f5f5f5;*/
+  /*}*/
 
   .water-fall-wrapper {
     position: relative;
