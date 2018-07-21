@@ -6,6 +6,10 @@ const install = (Vue) => {
   Vue.component('water-fall-item', WaterFallItem)
 }
 
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
+
 export {
   WaterFall,
   WaterFallItem
