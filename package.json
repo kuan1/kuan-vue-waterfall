@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/kuan1/kuan-vue-waterfall.git"
   },
-  "keywords": ["vue", "waterfall", "vue-waterfall"],
+  "keywords": [
+    "vue",
+    "waterfall",
+    "vue-waterfall"
+  ],
   "author": "luzhongk@126.com",
   "license": "ISC",
   "bugs": {
@@ -36,11 +40,14 @@
     "css-loader": "^1.0.0",
     "eslint": "^5.1.0",
     "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-html": "^4.0.5",
     "eslint-plugin-import": "^2.13.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.2",
+    "portfinder": "^1.0.13",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.6",
     "postcss-url": "^7.3.2",
