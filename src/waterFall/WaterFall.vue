@@ -24,6 +24,22 @@
         default: []
       }
     },
+    computed: {
+      w() {
+        const w = this.width.toString()
+        if (/^\d*$/.test(w)) {
+          return `${w}px`
+        }
+        return w
+      },
+      h() {
+        const h = this.height.toString()
+        if (/^\d*$/.test(h)) {
+          return `${h}px`
+        }
+        return h
+      }
+    },
     data() {
       return {
         height: 0,
