@@ -20,7 +20,7 @@ module.exports = {
     $: true,
     TweenLite: true // countTo
   },
-  plugins: ['html'],
+  plugins: [],
   // check if imports actually resolve
   settings: {
     'import/resolver': {

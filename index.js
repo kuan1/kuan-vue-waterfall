@@ -1,1 +1,1 @@
-module.exports = require('./lib/kuan-vue-waterfall.min')
+module.exports = require('./src/waterFall')
