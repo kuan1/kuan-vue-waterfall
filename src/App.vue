@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {WaterFall, WaterFallItem} from './waterFall'
+  import {WaterFall, WaterFallItem} from 'aaa'
 
   export default {
     data() {
@@ -47,6 +47,7 @@
 </script>
 
 <style scoped lang="scss">
+  @import "~aaa/lib/kuan-vue-waterfall.css";
   .item {
     padding: 8px;
     background: #1da57a;

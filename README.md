@@ -15,8 +15,9 @@ npm install kuan-vue-waterfall
 
 ## 全局注册
 ```
- import waterFall from './waterFall'
- Vue.use(waterFall) 全局注册
+ import 'kuan-vue-waterfall/lib/kuan-vue-waterfall.css'
+ import waterFall from './kuan-vue-waterfall'
+ Vue.use(waterFall) // 全局注册
 ```
 
 ## 参数
@@ -44,8 +45,7 @@ npm install kuan-vue-waterfall
 </template>
 
 <script>
-  import waterFall from './waterFall'
-  const {WaterFall, WaterFallItem} = waterFall
+  import {WaterFall, WaterFallItem}} from 'kuan-vue-waterfall'
 
   export default {
     data() {
@@ -79,6 +79,7 @@ npm install kuan-vue-waterfall
 </script>
 
 <style scoped lang="scss">
+  @import "~kuan-vue-waterfall/lib/kuan-vue-waterfall.css";
   .item {
     padding: 8px;
     background: #1da57a;

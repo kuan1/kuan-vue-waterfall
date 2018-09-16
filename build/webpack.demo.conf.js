@@ -2,22 +2,17 @@ const path = require('path')
 const base = require('./webpack.base.conf')
 const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const nodeExternals = require('webpack-node-externals')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-const libName = 'kuan-vue-waterfall'
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const resolve = (dir) => path.resolve(__dirname, '..', dir)
 
 const config = merge(base, {
-  entry: resolve('src/waterFall'), // lib
+  entry: resolve('src'), // lib
   output: {
-    path: resolve('lib'),
-    filename: `${libName}.js`,
-    library: libName,
-    libraryTarget: 'commonjs2'
+    path: resolve('demo')
   },
   optimization: {
     minimizer: [
@@ -33,12 +28,24 @@ const config = merge(base, {
       })
     ]
   },
-  externals: [nodeExternals()],
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `${libName}.css`,
+      filename: `[name].css`,
     }),
-    new CleanWebpackPlugin(['lib'], {root: path.resolve(__dirname, '..')})
+    new CleanWebpackPlugin(['demo'], {root: path.resolve(__dirname, '..')}),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: true,
+      favicon: resolve('static/favicon.ico'),
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        minifyJS: true,
+        minifyCSS: true,
+      },
+      chunksSortMode: 'dependency',
+    })
   ]
 })
 

@@ -2,10 +2,11 @@
   "name": "kuan-vue-waterfall",
   "version": "1.0.6",
   "description": "vue瀑布流插件",
-  "main": "index",
+  "main": "lib/kuan-vue-waterfall",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=production webpack --mode production --progress --config build/webpack.prod.conf.js",
+    "build:demo": "cross-env NODE_ENV=production webpack --mode production --progress --config build/webpack.demo.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
