@@ -7,9 +7,7 @@
 ## 安装
 ```
 yarn add kuan-vue-waterfall
-```
-【or】
-```
+# order
 npm install kuan-vue-waterfall
 ```
 
@@ -24,7 +22,7 @@ npm install kuan-vue-waterfall
 ## 参数
 ##### `water-fall`属性
 - data： 自动监听数据更新布局   (Array)
-- grap： 间隙   (String[`10rem` or `20px`])
+- gap： 间隙   (String[`10rem` or `20px`])
 - width： 单列的宽度（包括间隙) (String[`10rem` or `20px`])
 ##### `water-fall-item`属性
 - order: 排序顺序 (Number)
@@ -95,4 +93,3 @@ npm install kuan-vue-waterfall
 </style>
 
 ```
-f

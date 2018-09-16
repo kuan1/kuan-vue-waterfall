@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const vueLoaderConfig = require('./vue-loader.conf')
 
@@ -7,21 +9,11 @@ function resolve(dir) {
   return path.join(__dirname, '../', dir);
 }
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   module: {
     rules: [
-      // {
-      //   test: /\.(js|vue)$/,
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      //   include: [resolve('src')],
-      //   options: {
-      //     formatter: require('eslint-friendly-formatter'),
-      //     emitWarning: true
-      //   }
-      // },
       {test:/.vue$/, loader:'vue-loader', options: vueLoaderConfig},
       {
         test: /\.js$/,
@@ -37,24 +29,32 @@ module.exports = {
         },
       },
       {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'fonts/[name].[ext]?[hash]',
+        }
+      },
+      {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      'vue$': 'vue/dist/vue.esm.js'
     },
-  },
-  performance: {
-    maxEntrypointSize: 300000,
-    hints: isDev ? false : 'warning',
   },
   plugins: [
     // make sure to include the plugin!
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        name: JSON.stringify(process.env.npm_package_name)
+      }
+    })
   ],
 };

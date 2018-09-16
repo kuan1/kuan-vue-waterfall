@@ -1,4 +1,6 @@
 'use strict'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const cssLoader = {
   loader: 'css-loader',
   options: {
@@ -12,10 +14,12 @@ const postcssLoader = {
   }
 }
 
+const styleLoader = process.env.NODE_ENV === 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
+
 module.exports = {
   loaders: {
-    css: ['vue-style-loader', cssLoader, postcssLoader],
-    sass: ['vue-style-loader', cssLoader, postcssLoader, 'sass-loader']
+    css: [styleLoader, cssLoader, postcssLoader],
+    sass: [styleLoader, cssLoader, postcssLoader, 'sass-loader']
   },
   cssSourceMap: false,
   cacheBusting: true,

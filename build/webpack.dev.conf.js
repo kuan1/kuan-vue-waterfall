@@ -9,11 +9,11 @@ const ip = require('ip')
 
 const common = require('./webpack.base.conf.js');
 
-const PORT = 8088
-
 function resolve(dir) {
-  return path.join(__dirname, '../', dir);
+  return path.join(__dirname, '..', dir);
 }
+
+const PORT = 8088
 
 const webpackConfig = merge(common, {
   mode: 'development',
@@ -52,7 +52,7 @@ const webpackConfig = merge(common, {
     historyApiFallback: false,
     noInfo: false,
     stats: 'minimal',
-    open: true
+    open: false
   },
 });
 
@@ -75,3 +75,4 @@ module.exports = new Promise((resolve, reject) => {
     }
   })
 })
+
