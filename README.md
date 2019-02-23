@@ -5,7 +5,7 @@
 >  自动监听数据变化，自适应视口宽度
 
 ## 安装
-```
+```bash
 yarn add kuan-vue-waterfall
 # order
 npm install kuan-vue-waterfall
@@ -14,7 +14,7 @@ npm install kuan-vue-waterfall
 ![image](http://pic.luzhongkuan.cn/1532051693115.png?a=1)
 
 ## 全局注册
-```
+```js
  import 'kuan-vue-waterfall/lib/kuan-vue-waterfall.css'
  import waterFall from './kuan-vue-waterfall'
  Vue.use(waterFall) // 全局注册
@@ -29,7 +29,7 @@ npm install kuan-vue-waterfall
 - order: 排序顺序 (Number)
 
 ## 使用demo
-```
+```html
 <template>
   <div>
     <water-fall :data="data" gap="20px" width="200px">
@@ -45,7 +45,7 @@ npm install kuan-vue-waterfall
 </template>
 
 <script>
-  import {WaterFall, WaterFallItem}} from 'kuan-vue-waterfall'
+  import {WaterFall, WaterFallItem} from 'kuan-vue-waterfall'
 
   export default {
     data() {
