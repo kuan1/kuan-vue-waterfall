@@ -17,7 +17,7 @@ npm install kuan-vue-waterfall
 
 ## 使用
 
-```js
+```javascript
  // 全局注册
  import waterFall from 'kuan-vue-waterfall'
  Vue.use(waterFall) // 全局注册
