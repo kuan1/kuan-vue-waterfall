@@ -1,11 +1,19 @@
-import Vue from 'vue'
+import WaterFall from './WaterFall.vue'
+import WaterFallItem from './WaterFallItem.vue'
 
-import App from './App'
+const install = Vue => {
+  Vue.component('water-fall', WaterFall)
+  Vue.component('water-fall-item', WaterFallItem)
+}
 
-Vue.config.productionTip = false
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
 
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
-})
+export { WaterFall, WaterFallItem }
+
+export default {
+  WaterFall,
+  WaterFallItem,
+  install
+}

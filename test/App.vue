@@ -1,46 +1,3 @@
-# kuan-vue-waterfall （vue 瀑布插件）
-
-### [https://kuan1.github.io/kuan-vue-waterfall/demo](https://kuan1.github.io/kuan-vue-waterfall/demo)
-
-> 不需要设置内容高度，间隙默认 0
-> 自动监听数据变化，自适应视口宽度
-
-## 安装
-
-```bash
-yarn add kuan-vue-waterfall
-# order
-npm install kuan-vue-waterfall
-```
-
-![image](http://pic.luzhongkuan.cn/1532051693115.png?a=1)
-
-## 使用
-
-```js
- // 全局注册
- import waterFall from 'kuan-vue-waterfall'
- Vue.use(waterFall) // 全局注册
-
- // 局部使用
- import { WaterFall, WaterFallItem } from 'kuan-vue-waterfall'
-```
-
-## 参数
-
-##### `water-fall`属性
-
-- data： 自动监听数据更新布局 (Array)
-- gap： 间隙 (String[`10rem` or `20px`])
-- width： 单列的宽度（包括间隙) (String[`10rem` or `20px`])
-
-##### `water-fall-item`属性
-
-- order: 排序顺序 (Number)
-
-## DEMO
-
-```html
 <template>
   <div v-if="data.length">
     <water-fall :data="data" gap="20px" width="200px">
@@ -120,11 +77,3 @@ export default {
   margin: 20px auto;
 }
 </style>
-```
-
-# 更新日志
-
-2.0.0
-
-- 组件销毁，取消事件监听
-- 取消 css 分离，方便引入
