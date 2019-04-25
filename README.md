@@ -7,7 +7,7 @@
 
 ## 安装
 
-```
+```bash
 yarn add kuan-vue-waterfall
 # order
 npm install kuan-vue-waterfall
@@ -17,7 +17,7 @@ npm install kuan-vue-waterfall
 
 ## 使用
 
-```
+```javascript
  // 全局注册
  import waterFall from 'kuan-vue-waterfall'
  Vue.use(waterFall) // 全局注册
@@ -40,7 +40,7 @@ npm install kuan-vue-waterfall
 
 ## DEMO
 
-```
+```html
 <template>
   <div v-if="data.length">
     <water-fall :data="data" gap="20px" width="200px">
