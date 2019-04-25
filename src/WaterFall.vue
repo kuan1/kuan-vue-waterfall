@@ -116,7 +116,7 @@ export default {
 
     window.addEventListener('resize', this.initWaterFall)
   },
-  beforeDestory() {
+  beforeDestroy() {
     window.removeEventListener('resize', this.initWaterFall)
   }
 }
