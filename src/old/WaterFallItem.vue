@@ -1,5 +1,5 @@
 <template>
-  <div :style="{width: width, padding: gap}" class="water-fall-item">
+  <div :style="{ width: width, padding: gap }" class="water-fall-item">
     <slot></slot>
   </div>
 </template>
@@ -9,23 +9,23 @@ export default {
   props: {
     order: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     width() {
-      const { width } = this.$parent
-      return width
+      const { width } = this.$parent;
+      return width;
     },
     gap() {
-      const { gap } = this.$parent
-      return gap
-    }
-  }
-}
+      const { gap } = this.$parent;
+      return gap;
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .water-fall-item {
   left: 0;
   top: 0;
@@ -34,7 +34,7 @@ export default {
 }
 </style>
 
-<style lang="scss">
+<style lang="less">
 .water-fall-item {
   & > div,
   img {

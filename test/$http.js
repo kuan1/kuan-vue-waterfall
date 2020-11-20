@@ -3,12 +3,11 @@ import { createApi } from 'kuan-request'
 export default createApi({
   // 默认配置
   createOptions: {
-    baseURL: '//api.luzhongkuan.cn',
-    // baseURL: isDev ? 'http://localhost:8002' : '//api.luzhongkuan.cn',
-    withCredentials: true
+    baseURL: 'https://www.luzhongkuan.cn',
+    withCredentials: false,
   },
   // 错误处理
   handleError: (status, msg, error) => {
     console.log(status, msg, error)
-  }
+  },
 })

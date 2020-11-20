@@ -13,58 +13,58 @@
 </template>
 
 <script>
-import { WaterFall, WaterFallItem } from '../src'
-import { loadImages } from 'kuan-utils'
-import { loading } from 'kuan-request'
+import { WaterFall, WaterFallItem } from '../src';
+import { preloadImage as loadImages } from '@halobear/utils/imgUtil';
+import { loading } from 'kuan-request';
 
 export default {
   data() {
     return {
       payload: {
         page: 1,
-        size: 30
+        size: 30,
       },
       total: 0,
-      data: []
-    }
+      data: [],
+    };
   },
   computed: {
     hasMore() {
-      const { page, size } = this.payload
-      return page * size < this.total
-    }
+      const { page, size } = this.payload;
+      return page * size < this.total;
+    },
   },
   mounted() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     async fetchData() {
       const data = await this.$http({
         url: '/qn/list',
         params: this.payload,
-      })
-      loading.show()
-      this.total = data.total
-      const images = data.content.map(item => item.url)
-      await loadImages(images)
-      this.data = [...this.data, ...images]
-      loading.hide()
+      });
+      loading.show();
+      this.total = data.total;
+      const images = data.content.map((item) => item.url);
+      await loadImages(images);
+      this.data = [...this.data, ...images];
+      loading.hide();
     },
     copyData() {
       if (this.hasMore) {
-        this.payload.page += 1
-        this.fetchData()
+        this.payload.page += 1;
+        this.fetchData();
       }
-    }
+    },
   },
   components: {
     WaterFall,
-    WaterFallItem
-  }
-}
+    WaterFallItem,
+  },
+};
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .item {
   padding: 8px;
   background: #1da57a;

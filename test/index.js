@@ -1,13 +1,8 @@
-import Vue from 'vue'
-
-import App from './App'
-
+import { createApp } from 'vue'
+import App from './App.vue'
 import $http from './$http'
 
-Vue.config.productionTip = false
+const app = createApp(App)
+app.config.globalProperties.$http = $http
 
-Vue.prototype.$http = $http
-
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
+app.mount('#app')
