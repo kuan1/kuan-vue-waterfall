@@ -33,6 +33,9 @@ const testConfig = {
       app: path.resolve(__dirname, 'test/index.js'),
     },
   },
+  chainWebpack(config) {
+    config.resolve.alias.set('kuan-vue-waterfall', path.resolve(__dirname, 'src'))
+  }
 }
 
 module.exports = process.env.BUILD_TARGET === 'test' ? testConfig : config

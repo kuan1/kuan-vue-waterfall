@@ -857,6 +857,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@halobear/css@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/@halobear/css/download/@halobear/css-3.0.0.tgz#527f092ad1dd3e7e3f11f3c0d9dec88155f31197"
+  integrity sha1-Un8JKtHdPn4/EfPA2d7IgVXzEZc=
+
 "@halobear/utils@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/@halobear/utils/download/@halobear/utils-2.0.0.tgz#f47b21094f74c6e6d3610c8e1256b63b34b1d77a"

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "kuan-vue-waterfall": ["src"],
+      "@/*": ["src/*"]
+    }
+  },
+  "allowSyntheticDefaultImports": true,
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}

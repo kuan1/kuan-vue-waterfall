@@ -1,3 +1,4 @@
+import '@halobear/css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import $http from './$http'

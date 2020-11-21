@@ -16,12 +16,12 @@ export default {
       default: '300px',
     },
     gap: {
-      type: String, // '0', '10px', '10rem'
+      type: [String, Number], // '0', '10px', '10rem'
       default: 0,
     },
     data: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
   computed: {

@@ -1,4 +1,4 @@
-# kuan-vue-waterfall （vue 瀑布插件）
+# kuan-vue-waterfall （vue3.0 瀑布插件开发中...）
 
 ### [https://kuan1.github.io/kuan-vue-waterfall/demo](https://kuan1.github.io/kuan-vue-waterfall/demo)
 

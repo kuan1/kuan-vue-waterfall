@@ -1,23 +1,29 @@
 <template>
   <div v-if="data.length">
-    <water-fall :data="data" gap="20px" width="200px">
-      <water-fall-item v-for="(item, index) in data" :key="index" :order="index">
-        <div class="item">
-          <img :src="item" />
+    <water-fall :data="data" gap="10px" width="200px">
+      <template #default="item">
+        <div class="card">
+          <img class="img" :src="item.src" />
+          <p>{{ item.src }}</p>
         </div>
-      </water-fall-item>
+      </template>
     </water-fall>
 
-    <button v-if="hasMore" class="add-btn" @click="copyData">加载更多</button>
+    <div class="load-more">
+      <i class="halo-loading"></i>
+      <span>加载中...</span>
+    </div>
   </div>
 </template>
 
 <script>
-import { WaterFall, WaterFallItem } from '../src';
-import { preloadImage as loadImages } from '@halobear/utils/imgUtil';
+import WaterFall from 'kuan-vue-waterfall';
 import { loading } from 'kuan-request';
 
 export default {
+  components: {
+    WaterFall,
+  },
   data() {
     return {
       payload: {
@@ -45,8 +51,10 @@ export default {
       });
       loading.show();
       this.total = data.total;
-      const images = data.content.map((item) => item.url);
-      await loadImages(images);
+      const images = data.content.map((item) => ({
+        key: item.id,
+        src: item.url,
+      }));
       this.data = [...this.data, ...images];
       loading.hide();
     },
@@ -57,23 +65,35 @@ export default {
       }
     },
   },
-  components: {
-    WaterFall,
-    WaterFallItem,
-  },
 };
 </script>
 
-<style scoped lang="less">
-.item {
-  padding: 8px;
-  background: #1da57a;
+<style lang="less">
+body {
+  background-color: #f2f3f8;
 }
 
-.add-btn {
-  font-size: 30px;
-  display: block;
-  padding: 20px;
-  margin: 20px auto;
+.card {
+  padding: 10px;
+  background-color: white;
+  border-radius: 3px;
+  color: #666;
+  line-height: 1.5;
+  word-break: break-all;
+  img {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  padding: 1em 0;
+  .halo-loading {
+    margin-right: 0.2em;
+  }
 }
 </style>
