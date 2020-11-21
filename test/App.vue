@@ -1,24 +1,22 @@
 <template>
   <div v-if="data.length">
-    <water-fall :data="data" gap="10px" width="200px">
+    <water-fall gap="10px" width="200px" class="container" :data="data" :delay="true">
       <template #default="item">
         <div class="card">
-          <img class="img" :src="item.src" />
+          <img class="img" :src="item.src" @click="preview(item.src)" />
           <p>{{ item.src }}</p>
         </div>
       </template>
     </water-fall>
 
-    <div class="load-more">
-      <i class="halo-loading"></i>
-      <span>加载中...</span>
-    </div>
+    <button class="halo-btn halo-btn-primary" @click="loadMore">加载更多</button>
   </div>
 </template>
 
 <script>
 import WaterFall from 'kuan-vue-waterfall';
 import { loading } from 'kuan-request';
+import photoSwipe from 'kuan-vue-photoswipe';
 
 export default {
   components: {
@@ -28,7 +26,7 @@ export default {
     return {
       payload: {
         page: 1,
-        size: 30,
+        size: 10,
       },
       total: 0,
       data: [],
@@ -44,6 +42,9 @@ export default {
     this.fetchData();
   },
   methods: {
+    preview(url) {
+      photoSwipe.preview(url);
+    },
     async fetchData() {
       const data = await this.$http({
         url: '/qn/list',
@@ -58,7 +59,7 @@ export default {
       this.data = [...this.data, ...images];
       loading.hide();
     },
-    copyData() {
+    loadMore() {
       if (this.hasMore) {
         this.payload.page += 1;
         this.fetchData();
@@ -73,6 +74,10 @@ body {
   background-color: #f2f3f8;
 }
 
+.container {
+  min-height: 90vh;
+}
+
 .card {
   padding: 10px;
   background-color: white;
@@ -85,15 +90,8 @@ body {
     margin-bottom: 5px;
   }
 }
-
-.load-more {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  padding: 1em 0;
-  .halo-loading {
-    margin-right: 0.2em;
-  }
+.halo-btn {
+  margin: 100px auto;
+  display: block;
 }
 </style>

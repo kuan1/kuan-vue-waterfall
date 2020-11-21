@@ -6,10 +6,10 @@ export function finMinIndex(arr) {
   return min
 }
 
-export function getDefaultArr(colNum = 1, arr = [], initail = () => 0) {
+export function getDefaultArr(colNum = 1, initail = () => 0, arr = []) {
   if (arr.length < colNum) {
     arr.push(initail())
-    return getDefaultArr(colNum, arr, initail)
+    return getDefaultArr(colNum, initail, arr)
   }
   return arr
 }

@@ -2,27 +2,34 @@ import { ref, onMounted, onBeforeMount } from 'vue'
 import { debounce } from '@halobear/utils/throttle-debounce'
 import WaterFallData from '../utils/WaterFallData'
 
-export default () => {
-  const container = ref(null)
-  const dataList = ref([])
-  const waterFallData = ref(null)
-  const tempList = [] // 缓存加载完成数据，防止页面刷新次数过多
+export default (itemWidth, d = [], delay) => {
+  const container = ref(null) // 父元素
+  const data = ref(d) // 瀑布流数据
+  const waterfall = ref(null) // 瀑布流数据管理
+  const containerWidth = ref(0)
+  const containerHeight = ref(0)
 
-  const initWaterFall = () => {
-    waterFallData.value = new WaterFallData()
+  const push = (newData = []) => {
+    if (!newData.length) return
+    data.value = waterfall.value.push(newData)
+    containerHeight.value = waterfall.value.containerHeight
   }
 
-  const debouncePush = debounce(() => {
-    dataList.value = waterFallData.value.push(tempList)
-  })
+  const initWaterFall = () => {
+    const res = new WaterFallData(itemWidth, container.value)
+    data.value = res.data
+    containerWidth.value = res.containerWidth
+    containerHeight.value = res.containerHeight
 
-  const push = (item) => {
-    tempList.push(item)
-    debouncePush(tempList)
+    if (!delay) {
+      push(data.value)
+    }
   }
 
   const resize = debounce(() => {
-    waterFallData.value.resize()
+    data.value = waterfall.value.resize()
+    containerWidth.value = waterfall.value.containerWidth
+    containerHeight.value = waterfall.value.containerHeight
   })
 
   onMounted(() => {
@@ -34,9 +41,11 @@ export default () => {
     window.removeEventListener('resize', resize)
   })
 
+
   return {
+    push,
     container,
-    dataList,
-    push
+    containerWidth,
+    containerHeight,
   }
 }
