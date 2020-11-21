@@ -18,17 +18,6 @@
       >
         <slot v-bind="item"></slot>
       </water-fall-item>
-      <!-- 用于预加载 -->
-      <water-fall-item
-        v-if="delay && loadingItemData.key"
-        :key="loadingItemData.key"
-        :item="loadingItemData"
-        :style="{ padding: padding, width: itemWidth }"
-        :preload="true"
-        @load="load"
-      >
-        <slot v-bind="loadingItemData"></slot>
-      </water-fall-item>
     </div>
 
     <div v-if="delay && data.length > list.length" class="water-fall-more">
@@ -72,15 +61,11 @@ export default {
   setup(props) {
     // 宽度+padding
     const fullItemWidth = parseInt(props.width) + parseInt(props.gap) * 2;
-    const {
-      onDataChange,
-      push,
-      dataList,
-      container,
-      containerWidth,
-      containerHeight,
-      loadingItemData,
-    } = useWaterfall(fullItemWidth, props.data, props.delay);
+    const { list, push, reset, container, containerWidth, containerHeight } = useWaterfall(
+      fullItemWidth,
+      props.data,
+      props.delay
+    );
     const itemWidth = computed(() => autoUnit(props.width));
     const padding = computed(() => autoUnit(props.gap));
 
@@ -94,17 +79,16 @@ export default {
 
     watch(
       () => props.data,
-      () => onDataChange(props.data)
+      () => reset(props.data)
     );
 
     return {
-      list: dataList,
+      list,
       container,
       autoContainerWidth,
       containerHeight,
       padding,
       itemWidth,
-      loadingItemData,
       load,
     };
   },

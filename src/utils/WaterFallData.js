@@ -3,13 +3,12 @@ import { finMinIndex, getDefaultArr } from './util'
 export default class WaterFallData {
   constructor(itemWidth = 0, container) {
     this.container = container // 容器dom
+    this.data = [] // 数据源
     this.containerWidth = 0 // 容器最大宽度
     this.containerHeight = 0 // 容器高度
     this.itemWidth = itemWidth // 卡片宽度
     this.colNum = this.setColNum() // 列数
     this.heightList = getDefaultArr(this.colNum) // 高度
-
-    this.data = [] // 数据源
   }
 
   // 新增数据
