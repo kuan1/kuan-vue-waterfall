@@ -1,20 +1,21 @@
 <template>
-  <div>
+  <div ref="container">
     <div
       class="kuan-vue-waterfall"
-      ref="container"
-      :style="{ width: autoContainerWidth, height: `${containerHeight}px` }"
+      :style="{ width: containerWidth, height: `${containerHeight}px` }"
     >
       <water-fall-item
-        v-for="item in list"
+        v-for="(item, i) in list"
         :key="item.key || item.id"
         :item="item"
+        :class="{ loaded: item.loaded }"
         :style="{
           padding: padding,
           width: itemWidth,
           left: `${item.left || 0}px`,
           top: `${item.top || 0}px`,
         }"
+        @load="load(i, $event)"
       >
         <slot v-bind="item"></slot>
       </water-fall-item>
@@ -29,9 +30,10 @@
 
 <script>
 import { computed, watch } from 'vue';
+import { debounce } from '@halobear/utils/throttle-debounce';
 
 import useWaterfall from './composables/use-waterfall';
-import { autoUnit } from './utils/util';
+import { autoUnit, mergeData } from './utils/util';
 
 import WaterFallItem from './water-fall-item';
 
@@ -44,6 +46,9 @@ export default {
     data: {
       type: Array,
       default: () => [],
+      validator: (d = []) => {
+        return !d.length || d[0].key;
+      },
     },
     delay: {
       type: Boolean,
@@ -59,37 +64,45 @@ export default {
     },
   },
   setup(props) {
+    const loadedArr = [];
+
     // 宽度+padding
-    const fullItemWidth = parseInt(props.width) + parseInt(props.gap) * 2;
-    const { list, push, reset, container, containerWidth, containerHeight } = useWaterfall(
+    const fullItemWidth = parseInt(props.width) + parseInt(props.gap);
+    const { list, initData, setState, container, containerWidth, containerHeight } = useWaterfall(
       fullItemWidth,
-      props.data,
-      props.delay
-    );
-    const itemWidth = computed(() => autoUnit(props.width));
-    const padding = computed(() => autoUnit(props.gap));
-
-    const autoContainerWidth = computed(
-      () => (containerWidth.value && `${containerWidth.value}px`) || '100%'
+      props.data
     );
 
-    const load = (item) => {
-      item.key && push([item]);
+    const debounceInitData = debounce(() => {
+      let maxIndex = 0;
+      for (let i = 0; i < loadedArr.length; i++) {
+        if (loadedArr[i]) {
+          maxIndex = i;
+        } else {
+          break;
+        }
+      }
+      initData(loadedArr.slice(0, maxIndex));
+    });
+
+    const load = (i, item) => {
+      loadedArr[i] = item;
+      debounceInitData();
     };
 
     watch(
       () => props.data,
-      () => reset(props.data)
+      (data) => setState(mergeData(data, list.value))
     );
 
     return {
       list,
       container,
-      autoContainerWidth,
+      containerWidth,
       containerHeight,
-      padding,
-      itemWidth,
-      load,
+      padding: computed(() => autoUnit(parseInt(props.gap / 2))),
+      itemWidth: computed(() => autoUnit(props.width)),
+      load: load,
     };
   },
 };
@@ -108,8 +121,11 @@ export default {
   position: absolute;
   left: 0;
   top: 100%;
+  visibility: hidden;
   &.loaded {
     opacity: 1;
+    animation: waterFadeIn 1s ease;
+    visibility: visible;
   }
 }
 
@@ -141,6 +157,16 @@ export default {
 
   100% {
     transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+@keyframes waterFadeIn {
+  from {
+    transform: translateY(5px);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 </style>

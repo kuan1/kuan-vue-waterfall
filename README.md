@@ -1,4 +1,4 @@
-# kuan-vue-waterfall （vue3.0 瀑布插件开发中...）
+# kuan-vue-waterfall （vue3.0 瀑布插件）
 
 ### [点击查看 demo ->](https://kuan1.github.io/kuan-vue-waterfall/demo)
 
@@ -31,7 +31,6 @@ export default {
 ##### `water-fall`属性
 
 - `data {Array}`: 数据源列表
-- `delay {Boolean}`: 是否等待图片加载完成
 - `width {String|Number}`: 单个卡片的宽度
 - `gap {String|Number}`: 单个卡片之间边距
 
