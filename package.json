@@ -5,7 +5,7 @@
   "main": "lib/kuan-vue-waterfall",
   "scripts": {
     "dev": "BUILD_TARGET=test vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "BUILD_TARGET=demo vue-cli-service build",
     "build:lib": "vue build src/index.js -t lib -d lib -n kuan-vue-waterfall",
     "lint": "vue-cli-service lint"
   },
