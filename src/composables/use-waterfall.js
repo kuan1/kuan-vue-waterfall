@@ -1,4 +1,4 @@
-import { reactive, toRefs, ref, onMounted, onBeforeMount } from 'vue'
+import { reactive, toRefs, ref, onMounted, onBeforeMount, nextTick } from 'vue'
 import { debounce } from '@halobear/utils/throttle-debounce'
 import WaterFallData from '../utils/WaterFallData'
 
@@ -13,10 +13,14 @@ export default (itemWidth, data = []) => {
   let waterfall = null // 瀑布流数据管理
   let colNum = 1
 
-  const handleData = ({ data, containerHeight }) => {
+  const handleData = async ({ data, containerHeight }) => {
+    // 加载更多谷歌浏览器自动滚动到底部
+    const oldScrollY = window.scrollY
     state.list =
       state.list.length > data.length ? [...data, ...state.list.slice(data.length)] : data
     state.containerHeight = containerHeight
+    await nextTick()
+    window.scrollTo({ top: oldScrollY })
   }
 
   const initData = (optionData) => {

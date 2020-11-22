@@ -3,13 +3,13 @@
     <water-fall gap="10px" width="250px" class="container" :data="data" :delay="true">
       <template #default="item">
         <div class="card">
-          <img class="img" :src="item.src" @click="preview(item.src)" />
+          <img class="img" :src="item.src" @click="preview(item.src, $event)" />
           <p>{{ item.src }}</p>
         </div>
       </template>
     </water-fall>
 
-    <button class="halo-btn halo-btn-primary" @click="loadMore">加载更多</button>
+    <button class="halo-btn halo-btn-primary" @click.stop.prevent="loadMore">加载更多</button>
   </div>
 </template>
 
@@ -42,8 +42,9 @@ export default {
     this.fetchData();
   },
   methods: {
-    preview(url) {
-      photoSwipe.preview(url);
+    preview(url, e) {
+      const { width, height } = e.target;
+      photoSwipe.preview(width ? [{ src: url, w: width, h: height }] : url);
     },
     async fetchData() {
       const data = await this.$http({
@@ -85,9 +86,10 @@ body {
   color: #666;
   line-height: 1.5;
   word-break: break-all;
-  img {
+  .img {
     width: 100%;
     margin-bottom: 5px;
+    cursor: pointer;
   }
 }
 .halo-btn {

@@ -13,7 +13,7 @@
           padding: padding,
           width: itemWidth,
           left: `${item.left || 0}px`,
-          top: `${item.top || 0}px`,
+          top: item.loaded ? `${item.top || 0}px` : '100%',
         }"
         @load="load(i, $event)"
       >
@@ -118,13 +118,13 @@ export default {
 }
 
 .water-fall-item {
-  opacity: 0;
   box-sizing: content-box;
   position: absolute;
   left: 0;
   top: 100%;
   visibility: hidden;
-  transition: opacity 0.5s, left 0.5s, top 0.5s;
+  opacity: 0;
+  transition: opacity 0.5s 0.15s, left 0.3s, top 0.3s;
   &.loaded {
     opacity: 1;
     visibility: visible;
