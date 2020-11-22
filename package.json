@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "BUILD_TARGET=test vue-cli-service serve",
     "build": "BUILD_TARGET=demo vue-cli-service build",
-    "build:lib": "vue build src/index.js -t lib -d lib -n kuan-vue-waterfall",
+    "build:lib": "vue-cli-service build --target lib --filename kuan-vue-waterfall src/index.js",
     "lint": "vue-cli-service lint"
   },
   "author": "luzhongk@126.com",
@@ -31,12 +31,12 @@
   },
   "homepage": "https://github.com/kuan1/kuan-vue-waterfall#readme",
   "dependencies": {
-    "@halobear/utils": "^2.0.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },
   "devDependencies": {
     "@halobear/css": "^3.0.0",
+    "@halobear/utils": "^2.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

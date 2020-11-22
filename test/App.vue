@@ -15,7 +15,6 @@
 
 <script>
 import WaterFall from 'kuan-vue-waterfall';
-import { loading } from 'kuan-request';
 import photoSwipe from 'kuan-vue-photoswipe';
 
 export default {
@@ -54,10 +53,8 @@ export default {
         src: require(`./images/${key}.jpg`),
       }));
       console.log(images);
-      loading.show();
       this.total = 500;
       this.data = [...this.data, ...images];
-      loading.hide();
     },
     loadMore() {
       if (this.hasMore) {

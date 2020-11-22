@@ -12,8 +12,6 @@ yarn add kuan-vue-waterfall
 npm install kuan-vue-waterfall
 ```
 
-![image](http://pic.luzhongkuan.cn/1532051693115.png?a=1)
-
 ## 使用
 
 ```javascript
@@ -34,6 +32,6 @@ export default {
 - `width {String|Number}`: 单个卡片的宽度
 - `gap {String|Number}`: 单个卡片之间边距
 
-## 使用
+## 使用 demo
 
 [点击查看](./test/App.vue)
