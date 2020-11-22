@@ -21,7 +21,7 @@
       </water-fall-item>
     </div>
 
-    <div v-if="delay && data.length > list.length" class="water-fall-more">
+    <div v-if="loadedData.length < data.length" class="water-fall-more">
       <i class="waterfall-loading"></i>
       <span>加载中...</span>
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { computed, watch } from 'vue';
+import { computed, watch, ref } from 'vue';
 import { debounce } from '@halobear/utils/throttle-debounce';
 
 import useWaterfall from './composables/use-waterfall';
@@ -64,7 +64,7 @@ export default {
     },
   },
   setup(props) {
-    const loadedArr = [];
+    const loadedData = ref([]);
 
     // 宽度+padding
     const fullItemWidth = parseInt(props.width) + parseInt(props.gap);
@@ -75,18 +75,19 @@ export default {
 
     const debounceInitData = debounce(() => {
       let maxIndex = 0;
-      for (let i = 0; i < loadedArr.length; i++) {
-        if (loadedArr[i]) {
+      const arr = loadedData.value;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i]) {
           maxIndex = i;
         } else {
           break;
         }
       }
-      initData(loadedArr.slice(0, maxIndex));
+      initData(arr.slice(0, maxIndex));
     });
 
     const load = (i, item) => {
-      loadedArr[i] = item;
+      loadedData.value[i] = item;
       debounceInitData();
     };
 
@@ -103,6 +104,7 @@ export default {
       padding: computed(() => autoUnit(parseInt(props.gap / 2))),
       itemWidth: computed(() => autoUnit(props.width)),
       load: load,
+      loadedData,
     };
   },
 };
@@ -122,9 +124,9 @@ export default {
   left: 0;
   top: 100%;
   visibility: hidden;
+  transition: opacity 0.5s, left 0.5s, top 0.5s;
   &.loaded {
     opacity: 1;
-    animation: waterFadeIn 1s ease;
     visibility: visible;
   }
 }
@@ -157,16 +159,6 @@ export default {
 
   100% {
     transform: rotate3d(0, 0, 1, 360deg);
-  }
-}
-@keyframes waterFadeIn {
-  from {
-    transform: translateY(5px);
-    opacity: 0.3;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 </style>

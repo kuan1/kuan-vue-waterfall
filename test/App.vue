@@ -1,6 +1,6 @@
 <template>
   <div v-if="data.length">
-    <water-fall gap="10px" width="200px" class="container" :data="data" :delay="true">
+    <water-fall gap="10px" width="250px" class="container" :data="data" :delay="true">
       <template #default="item">
         <div class="card">
           <img class="img" :src="item.src" @click="preview(item.src)" />
