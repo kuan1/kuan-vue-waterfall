@@ -101,7 +101,7 @@ export default {
       container,
       containerWidth,
       containerHeight,
-      padding: computed(() => autoUnit(parseInt(props.gap / 2))),
+      padding: computed(() => autoUnit(parseInt(props.gap) / 2)),
       itemWidth: computed(() => autoUnit(props.width)),
       load: load,
       loadedData,

@@ -2,7 +2,8 @@
   "name": "kuan-vue-waterfall",
   "version": "3.0.0",
   "description": "vue瀑布流插件",
-  "main": "lib/kuan-vue-waterfall",
+  "main": "lib/kuan-vue-waterfall.common.js",
+  "module": "lib/kuan-vue-waterfall.umd.min.js",
   "scripts": {
     "dev": "BUILD_TARGET=test vue-cli-service serve",
     "build": "BUILD_TARGET=demo vue-cli-service build",
@@ -44,7 +45,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
-    "kuan-request": "^1.1.4",
     "kuan-vue-photoswipe": "^2.0.1",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",

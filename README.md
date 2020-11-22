@@ -30,12 +30,10 @@ export default {
 
 ##### `water-fall`属性
 
-- `data {Array}`: 数据源列表
+- `data {Array}`: 数据源列表 [{key: ''}]
 - `width {String|Number}`: 单个卡片的宽度
 - `gap {String|Number}`: 单个卡片之间边距
 
-## DEMO
+## 使用
 
-```html
-
-```
+[点击查看](./test/App.vue)

@@ -26,7 +26,7 @@ export default {
     return {
       payload: {
         page: 1,
-        size: 20,
+        size: 18,
       },
       total: 0,
       data: [],
@@ -47,16 +47,15 @@ export default {
       photoSwipe.preview(width ? [{ src: url, w: width, h: height }] : url);
     },
     async fetchData() {
-      const data = await this.$http({
-        url: '/qn/list',
-        params: this.payload,
-      });
-      loading.show();
-      this.total = data.total;
-      const images = data.content.map((item) => ({
-        key: item.id,
-        src: item.url,
+      const { page, size } = this.payload;
+      const prev = (page - 1) * size;
+      const images = [...Array(this.payload.size).keys()].map((key) => ({
+        key: key + 1 + prev,
+        src: require(`./images/${key}.jpg`),
       }));
+      console.log(images);
+      loading.show();
+      this.total = 500;
       this.data = [...this.data, ...images];
       loading.hide();
     },
