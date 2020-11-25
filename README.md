@@ -31,6 +31,7 @@ export default {
 - `data {Array}`: 数据源列表 [{key: ''}]
 - `width {String|Number}`: 单个卡片的宽度
 - `gap {String|Number}`: 单个卡片之间边距
+- `delay {Boolean}`: 是否等待看片内图片加载完成
 
 ## 使用 demo
 

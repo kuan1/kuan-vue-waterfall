@@ -1,7 +1,7 @@
 {
   "name": "kuan-vue-waterfall",
-  "version": "3.0.0",
-  "description": "vue瀑布流插件",
+  "version": "3.0.1",
+  "description": "vue3.0瀑布流插件",
   "main": "lib/kuan-vue-waterfall.common.js",
   "module": "lib/kuan-vue-waterfall.umd.min.js",
   "scripts": {

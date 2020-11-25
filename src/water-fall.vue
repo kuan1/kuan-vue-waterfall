@@ -8,6 +8,7 @@
         v-for="(item, i) in list"
         :key="item.key || item.id"
         :item="item"
+        :delay="delay"
         :class="{ loaded: item.loaded }"
         :style="{
           padding: padding,
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import { computed, watch, ref } from 'vue';
+import { computed, watch, ref, nextTick } from 'vue';
 import { debounce } from '@halobear/utils/throttle-debounce';
 
 import useWaterfall from './composables/use-waterfall';
@@ -63,7 +64,8 @@ export default {
       default: 200,
     },
   },
-  setup(props) {
+  emits: ['ready'],
+  setup(props, { emit }) {
     const loadedData = ref([]);
 
     // 宽度+padding
@@ -78,12 +80,18 @@ export default {
       const arr = loadedData.value;
       for (let i = 0; i < arr.length; i++) {
         if (arr[i]) {
-          maxIndex = i;
+          maxIndex = i + 1;
         } else {
           break;
         }
       }
-      initData(arr.slice(0, maxIndex));
+      const newData = arr.slice(0, maxIndex);
+      initData(newData);
+      if (newData.length >= arr.length) {
+        nextTick(() => {
+          emit('ready');
+        });
+      }
     });
 
     const load = (i, item) => {

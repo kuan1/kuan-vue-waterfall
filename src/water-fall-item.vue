@@ -14,20 +14,31 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    delay: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ['load'],
   setup(props, { emit }) {
     const container = ref();
-    const load = async () => {
+    const getItemData = () => ({
+      ...props.item,
+      height: container.value ? container.value.clientHeight : 200,
+    });
+
+    const delayLoad = async () => {
       await loadImages(container.value.querySelectorAll('img'));
       setTimeout(() => {
-        emit('load', {
-          ...props.item,
-          height: container.value ? container.value.clientHeight : 200,
-        });
-      }, 200);
+        emit('load', getItemData());
+      }, 150);
     };
-    onMounted(load);
+
+    const load = () => {
+      emit('load', getItemData());
+    };
+
+    onMounted(props.delay ? delayLoad : load);
 
     return { container };
   },
