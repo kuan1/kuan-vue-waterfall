@@ -1,19 +1,26 @@
 # kuan-vue-waterfall （vue3.0 瀑布插件）
 
-### [点击查看 demo ->](https://kuan1.github.io/kuan-vue-waterfall/demo)
+注意当前分支为 vue3.0 版本，如果使用 2.0，可以切换 vue2 的分支
 
-> 不需要设置内容高度，间隙默认 `0`  
-> 注意：如果没有图片需要延迟获取元素尺寸的话，可以设置`delay=false`，等待图片加载后显示元素体验比较差
+- 不需要设置内容高度，间隙默认 `0`
+- 原理：实现原理是手动获取 slot 的大小，进行了计算瀑布流的位置，如果有图片会等图片 onload 才会显示
+- 优化：如果没有图片或者 slot 中元素设置了内联样式的宽高，可以设置`delay=false`，这样体验会好很多
+
+## LIVE DEMO
+
+[DEMO 展示](https://kuan1.github.io/kuan-vue-waterfall/demo)
 
 ## 安装
 
 ```bash
 yarn add kuan-vue-waterfall
-# order
-npm install kuan-vue-waterfall
+# or
+npm i kuan-vue-waterfall
 ```
 
 ## 使用
+
+[查看使用示例](./test/App.vue)
 
 ```javascript
 import WaterFall from 'kuan-vue-waterfall'
@@ -33,7 +40,3 @@ export default {
 - `width {String|Number}`: 单个卡片的宽度
 - `gap {String|Number}`: 单个卡片之间边距
 - `delay {Boolean}`: 是否等待卡片内图片加载完成
-
-## 使用 demo
-
-[点击查看](./test/App.vue)
