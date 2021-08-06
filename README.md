@@ -6,9 +6,9 @@
 
 - 优化：如果没有图片或者 slot 中元素设置了内联样式的宽高，可以设置`delay=false`，这样体验会好很多
 
-## LIVE DEMO
+## 案例
 
-[DEMO 展示](https://kuan1.github.io/kuan-vue-waterfall/demo)
+[点击 DEMO](https://kuan1.github.io/kuan-vue-waterfall/demo)
 
 ## 安装
 
