@@ -20,7 +20,7 @@ npm i kuan-vue-waterfall
 
 ## 使用
 
-[查看使用示例](./test/App.vue)
+[查看 test.vue](./test/App.vue)
 
 ```javascript
 import WaterFall from 'kuan-vue-waterfall'
